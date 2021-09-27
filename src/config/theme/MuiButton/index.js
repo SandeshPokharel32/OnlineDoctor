@@ -1,28 +1,29 @@
-import { grey, primary } from '../UserDefinedColors';
+import { grey, primary } from "../UserDefinedColors";
 
-export default {
+const config = {
   props: {
     disableElevation: false,
   },
   overrides: {
     root: {
-      fontSize: '1rem',
-      padding: '1rem 2rem',
-      textTransform: 'capitalize',
+      fontSize: "1rem",
+      padding: "1rem 2rem",
+      textTransform: "capitalize",
+      borderRadius: "50%",
     },
     text: {
-      fontSize: '1rem',
-      padding: '1rem 2rem',
+      fontSize: "1rem",
+      padding: "1rem 2rem",
     },
     outlined: {
-      fontSize: '1rem',
-      padding: '1rem 2rem',
-      background: 'white',
+      fontSize: "1rem",
+      padding: "1rem 2rem",
+      background: "white",
     },
     textSecondary: {
       color: primary.default,
       background: primary.A200,
-      '&:hover': {
+      "&:hover": {
         background: primary.A300 + ` !important`,
       },
     },
@@ -35,14 +36,15 @@ export default {
       color: `${grey.A450} !important`,
       background: `${grey.white} !important`,
     },
-    // Sizes
     sizeSmall: {
-      fontSize: '0.875rem',
-      padding: '0.8125rem 2rem',
+      fontSize: "0.875rem",
+      padding: "0.8125rem 2rem",
     },
     sizeLarge: {
-      fontSize: '1rem',
-      padding: '22px 40px',
+      fontSize: "1rem",
+      padding: "22px 40px",
+      borderRadius: "10px",
     },
   },
 };
+export default config;

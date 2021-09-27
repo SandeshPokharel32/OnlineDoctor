@@ -30,7 +30,7 @@ const Styles = () => {
 const Login = ({ classes }) => {
   const [form, setForm] = useState({
     data: {
-      email: "",
+      citizenshipNumber: "",
       password: "",
     },
     showPassword: false,
@@ -43,7 +43,7 @@ const Login = ({ classes }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const errors = {};
-    Object.keys(form.data).map((name) => {
+    Object.keys(form.data).forEach((name) => {
       if (!form.data[name]) errors[name] = "Required";
     });
     if (Object.keys(errors).length) {
@@ -90,7 +90,7 @@ const Login = ({ classes }) => {
   };
 
   return (
-    <PageLayout heading="Patient Login" page="Login">
+    <PageLayout heading="Citizen Login" page="Login">
       <Box
         component="form"
         classes={{ root: classes.form }}
@@ -100,11 +100,18 @@ const Login = ({ classes }) => {
           <Grid xs={12} lg={12} item>
             <TextField
               classes={{ root: classes.inputRoot }}
-              id="email"
-              name="email"
-              type="email"
-              label="Email"
-              value={form.data.email}
+              id="citizenshipNumber"
+              name="citizenshipNumber"
+              type="text"
+              inputProps={{
+                pattern: "[0-9]{3}-[0-9]{3}-[0-9]{4}",
+                title: "Should be valid citizenship 000-000-0000",
+                minLength: "12",
+                maxLength: "12",
+                required: true,
+              }}
+              label="Citizenship Number"
+              value={form.data.citizenshipNumber}
               onChange={handleChange}
               required
             />
@@ -118,6 +125,10 @@ const Login = ({ classes }) => {
               name="password"
               type={form.showPassword ? "text" : "password"}
               label="Password"
+              inputProps={{
+                minLength: 6,
+                required: true,
+              }}
               value={form.data.password}
               classes={{ root: classes.inputRoot }}
               endAdornment={
@@ -151,8 +162,9 @@ const Login = ({ classes }) => {
                 variant="contained"
                 onClick={handleDoctorLogin}
                 color="default"
+                size="large"
               >
-                Login as Doctor Instead
+                Login as Vaccine camp
               </Button>
             </Box>
           </Grid>

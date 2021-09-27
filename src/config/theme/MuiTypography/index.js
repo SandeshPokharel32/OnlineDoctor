@@ -1,18 +1,20 @@
-import grey from '../UserDefinedColors/grey';
+import grey from "../UserDefinedColors/grey";
 
-export default {
+const config = {
   overrides: {
     root: {
       color: grey.default,
     },
     button: {
-      'text-transform': 'capitalize',
+      "text-transform": "capitalize",
     },
     colorSecondary: {
       color: grey.A500,
     },
     colorTextSecondary: {
-      color: 'white',
+      color: "white",
     },
   },
 };
+
+export default config;

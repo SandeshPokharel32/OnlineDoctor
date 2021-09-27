@@ -30,7 +30,7 @@ const DoctorLogin = ({ classes }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const errors = {};
-    Object.keys(form.data).map((name) => {
+    Object.keys(form.data).forEach((name) => {
       if (!form.data[name]) errors[name] = "Required";
     });
     if (Object.keys(errors).length) {
@@ -74,16 +74,18 @@ const DoctorLogin = ({ classes }) => {
             variant="contained"
             color="primary"
             onClick={handlePatientSignUp}
+            size="large"
           >
-            Patient
+            Citizen
           </Button>
           &nbsp;&nbsp;&nbsp;&nbsp;
           <Button
             variant="contained"
             color="primary"
+            size="large"
             onClick={handleDoctorSignUp}
           >
-            Doctor
+            Vaccine camp
           </Button>
         </Box>
       </Box>

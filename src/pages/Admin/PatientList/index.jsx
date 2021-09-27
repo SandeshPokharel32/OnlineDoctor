@@ -24,14 +24,14 @@ const Styles = () => ({
 const columns = [
   { field: "id", headerName: "ID", width: 90 },
   {
-    field: "patientId",
-    headerName: "Patient Id",
+    field: "citizenship",
+    headerName: "citizenship#",
     width: 200,
     editable: true,
   },
   {
     field: "patientName",
-    headerName: "Patient Name",
+    headerName: "Full Name",
     width: 300,
     editable: true,
   },
@@ -44,15 +44,60 @@ const columns = [
 ];
 
 const rows = [
-  { id: 1, patientId: 1, patientName: "Snow", status: "Active" },
-  { id: 2, patientId: 2, patientName: "Lannister", status: "Suspended" },
-  { id: 3, patientId: 3, patientName: "Lannister", status: "Suspended" },
-  { id: 4, patientId: 4, patientName: "Stark", status: "Active" },
-  { id: 5, patientId: 5, patientName: "Targaryen", status: "Suspended" },
-  { id: 6, patientId: 6, patientName: "Melisandre", status: "Active" },
-  { id: 7, patientId: 7, patientName: "Clifford", status: "Suspended" },
-  { id: 8, patientId: 8, patientName: "Frances", status: "Active" },
-  { id: 9, patientId: 9, patientName: "Roxie", status: "Active" },
+  {
+    id: 1,
+    citizenship: "111 - 111 - 1121",
+    patientName: "Snow",
+    status: "vaccinated",
+  },
+  {
+    id: 2,
+    citizenship: "111 - 111 - 1121",
+    patientName: "Lannister",
+    status: "waiting",
+  },
+  {
+    id: 3,
+    citizenship: "111 - 111 - 1121",
+    patientName: "Lannister",
+    status: "waiting",
+  },
+  {
+    id: 4,
+    citizenship: "111 - 111 - 1121",
+    patientName: "Stark",
+    status: "vaccinated",
+  },
+  {
+    id: 5,
+    citizenship: "111 - 111 - 1121",
+    patientName: "Targaryen",
+    status: "waiting",
+  },
+  {
+    id: 6,
+    citizenship: "111 - 111 - 1121",
+    patientName: "Melisandre",
+    status: "vaccinated",
+  },
+  {
+    id: 7,
+    citizenship: "111 - 111 - 1121",
+    patientName: "Clifford",
+    status: "waiting",
+  },
+  {
+    id: 8,
+    citizenship: "111 - 111 - 1121",
+    patientName: "Frances",
+    status: "vaccinated",
+  },
+  {
+    id: 9,
+    citizenship: "111 - 111 - 1121",
+    patientName: "Roxie",
+    status: "vaccinated",
+  },
 ];
 
 const PatientList = ({ classes }) => {
@@ -75,7 +120,7 @@ const PatientList = ({ classes }) => {
                 Admin
               </Typography>
             </Box>
-            <Button variant="contained" color="primary">
+            <Button size="large" variant="contained" color="primary">
               Logout
             </Button>
             <Divider />
@@ -83,7 +128,7 @@ const PatientList = ({ classes }) => {
             <div className={classes.toolbar} />
             <Divider />
             <List>
-              {["Add Doctor", "Patient List", "Doctor List"].map(
+              {["Add Camps", "Citizen List", "Camps List"].map(
                 (text, index) => (
                   <ListItem button key={text}>
                     <ListItemText primary={text} />

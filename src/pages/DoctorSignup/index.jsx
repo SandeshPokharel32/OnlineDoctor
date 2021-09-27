@@ -48,7 +48,7 @@ const DoctorSignup = ({ classes }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const errors = {};
-    Object.keys(form.data).map((name) => {
+    Object.keys(form.data).forEach((name) => {
       if (!form.data[name]) errors[name] = "Required";
     });
     if (Object.keys(errors).length) {
@@ -95,7 +95,7 @@ const DoctorSignup = ({ classes }) => {
   };
 
   return (
-    <PageLayout heading="Log in As Doctor" page="Doctor Login">
+    <PageLayout heading="Signup as Camp" page="Camp Login">
       <Box
         component="form"
         classes={{ root: classes.form }}
@@ -105,50 +105,76 @@ const DoctorSignup = ({ classes }) => {
           <Grid xs={12} lg={12} item>
             <TextField
               classes={{ root: classes.inputRoot }}
+              id="camp_id"
+              name="camp_id"
+              type="number"
+              label="Camp Id"
+              inputProps={{
+                min: "1000",
+                max: "10000",
+                required: true,
+              }}
+              value={form.data.camp_id}
+              onChange={handleChange}
+              required
+            />
+          </Grid>
+          <Grid xs={12} lg={12} item>
+            <TextField
+              classes={{ root: classes.inputRoot }}
               id="full_name"
               name="full_name"
               type="text"
-              label="Full Name"
+              label="Primary address"
               value={form.data.full_name}
               onChange={handleChange}
               required
             />
           </Grid>
-          <Grid xs={12} lg={12} item>
+          <Grid xs={12} lg={4} item>
             <TextField
               classes={{ root: classes.inputRoot }}
-              id="email"
-              name="email"
-              type="email"
-              label="Email"
-              value={form.data.email}
-              onChange={handleChange}
-              required
-            />
-          </Grid>
-          <Grid xs={12} lg={12} item>
-            <TextField
-              classes={{ root: classes.inputRoot }}
-              id="speciality"
-              name="speciality"
+              id="full_name"
+              name="full_name"
               type="text"
-              label="speciality"
-              value={form.data.speciality}
+              label="city"
+              value={form.data.full_name}
               onChange={handleChange}
               required
             />
           </Grid>
-          <Grid xs={12} lg={12} item>
+          <Grid xs={12} lg={4} item>
             <TextField
               classes={{ root: classes.inputRoot }}
-              id="temp_doctor_id"
-              name="temp_doctor_id"
-              type="number"
-              label="Temporary Doctor id"
-              value={form.data.temp_doctor_id}
+              id="full_name"
+              name="full_name"
+              type="text"
+              label="state"
+              value={form.data.full_name}
               onChange={handleChange}
               required
             />
+          </Grid>
+
+          <Grid xs={12} lg={4} item>
+            <TextField
+              classes={{ root: classes.inputRoot }}
+              id="full_name"
+              name="full_name"
+              type="text"
+              label="ward Number"
+              value={form.data.full_name}
+              onChange={handleChange}
+              required
+            />
+          </Grid>
+          <Grid xs={12} item>
+            <iframe
+              title="map"
+              src="https://www.google.com/maps/d/embed?mid=1q8j9-cGPI-rjUOdpd2TyArKlAWIh4_0Y"
+              width="100%"
+              height="480"
+            ></iframe>
           </Grid>
           <Grid xs={12} lg={12} item>
             <InputLabel htmlFor="standard-adornment-password">
@@ -221,6 +247,7 @@ const DoctorSignup = ({ classes }) => {
                 variant="contained"
                 onClick={handlePatientSignup}
                 color="default"
+                size="large"
               >
                 Sign up as Patient Instead
               </Button>

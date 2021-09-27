@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Container, withStyles } from "@material-ui/core";
-import logo from "assets/images/logo.png";
+import logo from "assets/images/logo.svg";
 import Navigation from "components/Navigation";
 import { Link } from "react-router-dom";
 

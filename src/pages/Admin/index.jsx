@@ -18,7 +18,6 @@ import {
 } from "@material-ui/core";
 import PageLayout from "layouts/PageLayout";
 import React, { useState } from "react";
-import { DataGrid } from "@material-ui/data-grid";
 import Visibility from "components/Icons/Visibility";
 import VisibilityOff from "components/Icons/VisibilityOff";
 import { useHistory } from "react-router";
@@ -36,40 +35,6 @@ const Styles = () => ({
     marginTop: "0",
   },
 });
-
-const columns = [
-  { field: "id", headerName: "ID", width: 90 },
-  {
-    field: "patientId",
-    headerName: "Patient Id",
-    width: 200,
-    editable: true,
-  },
-  {
-    field: "patientName",
-    headerName: "Patient Name",
-    width: 300,
-    editable: true,
-  },
-  {
-    field: "status",
-    headerName: "Status",
-    width: 200,
-    editable: true,
-  },
-];
-
-const rows = [
-  { id: 1, patientId: 1, patientName: "Snow", status: "Active" },
-  { id: 2, patientId: 2, patientName: "Lannister", status: "Suspended" },
-  { id: 3, patientId: 3, patientName: "Lannister", status: "Suspended" },
-  { id: 4, patientId: 4, patientName: "Stark", status: "Active" },
-  { id: 5, patientId: 5, patientName: "Targaryen", status: "Suspended" },
-  { id: 6, patientId: 6, patientName: "Melisandre", status: "Active" },
-  { id: 7, patientId: 7, patientName: "Clifford", status: "Suspended" },
-  { id: 8, patientId: 8, patientName: "Frances", status: "Active" },
-  { id: 9, patientId: 9, patientName: "Roxie", status: "Active" },
-];
 
 const PatientList = ({ classes }) => {
   const [form, setForm] = useState({
@@ -91,7 +56,7 @@ const PatientList = ({ classes }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const errors = {};
-    Object.keys(form.data).map((name) => {
+    Object.keys(form.data).forEach((name) => {
       if (!form.data[name]) errors[name] = "Required";
     });
     if (Object.keys(errors).length) {
@@ -155,7 +120,7 @@ const PatientList = ({ classes }) => {
                 Admin
               </Typography>
             </Box>
-            <Button variant="contained" color="primary">
+            <Button size="large" variant="contained" color="primary">
               Logout
             </Button>
             <Divider />
@@ -163,7 +128,7 @@ const PatientList = ({ classes }) => {
             <div className={classes.toolbar} />
             <Divider />
             <List>
-              {["Add Doctor", "Patient List", "Doctor List"].map(
+              {["Add Camps", "Citizen List", "Camps List"].map(
                 (text, index) => (
                   <ListItem button key={text}>
                     <ListItemText primary={text} />
@@ -183,50 +148,76 @@ const PatientList = ({ classes }) => {
               <Grid xs={12} lg={12} item>
                 <TextField
                   classes={{ root: classes.inputRoot }}
+                  id="camp_id"
+                  name="camp_id"
+                  type="number"
+                  label="Camp Id"
+                  inputProps={{
+                    min: "1000",
+                    max: "10000",
+                    required: true,
+                  }}
+                  value={form.data.camp_id}
+                  onChange={handleChange}
+                  required
+                />
+              </Grid>
+              <Grid xs={12} lg={12} item>
+                <TextField
+                  classes={{ root: classes.inputRoot }}
                   id="full_name"
                   name="full_name"
                   type="text"
-                  label="Full Name"
+                  label="Primary address"
                   value={form.data.full_name}
                   onChange={handleChange}
                   required
                 />
               </Grid>
-              <Grid xs={12} lg={12} item>
+              <Grid xs={12} lg={4} item>
                 <TextField
                   classes={{ root: classes.inputRoot }}
-                  id="email"
-                  name="email"
-                  type="email"
-                  label="Email"
-                  value={form.data.email}
-                  onChange={handleChange}
-                  required
-                />
-              </Grid>
-              <Grid xs={12} lg={12} item>
-                <TextField
-                  classes={{ root: classes.inputRoot }}
-                  id="speciality"
-                  name="speciality"
+                  id="full_name"
+                  name="full_name"
                   type="text"
-                  label="speciality"
-                  value={form.data.speciality}
+                  label="city"
+                  value={form.data.full_name}
                   onChange={handleChange}
                   required
                 />
               </Grid>
-              <Grid xs={12} lg={12} item>
+              <Grid xs={12} lg={4} item>
                 <TextField
                   classes={{ root: classes.inputRoot }}
-                  id="temp_doctor_id"
-                  name="temp_doctor_id"
-                  type="number"
-                  label="Temporary Doctor id"
-                  value={form.data.temp_doctor_id}
+                  id="full_name"
+                  name="full_name"
+                  type="text"
+                  label="state"
+                  value={form.data.full_name}
                   onChange={handleChange}
                   required
                 />
+              </Grid>
+
+              <Grid xs={12} lg={4} item>
+                <TextField
+                  classes={{ root: classes.inputRoot }}
+                  id="full_name"
+                  name="full_name"
+                  type="text"
+                  label="ward Number"
+                  value={form.data.full_name}
+                  onChange={handleChange}
+                  required
+                />
+              </Grid>
+              <Grid xs={12} item>
+                <iframe
+                  title="map"
+                  src="https://www.google.com/maps/d/embed?mid=1q8j9-cGPI-rjUOdpd2TyArKlAWIh4_0Y"
+                  width="100%"
+                  height="480"
+                ></iframe>
               </Grid>
               <Grid xs={12} lg={12} item>
                 <InputLabel htmlFor="standard-adornment-password">
@@ -299,6 +290,7 @@ const PatientList = ({ classes }) => {
                     variant="contained"
                     onClick={handlePatientSignup}
                     color="default"
+                    size="large"
                   >
                     Sign up as Patient Instead
                   </Button>

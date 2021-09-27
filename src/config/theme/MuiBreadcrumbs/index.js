@@ -1,16 +1,18 @@
-import { grey } from '../UserDefinedColors';
+import { grey } from "../UserDefinedColors";
 
-export default {
+const muiBreadcrumbs = {
   overrides: {
     root: {
-      fontSize: '0.875rem',
+      fontSize: "0.875rem",
     },
     separator: {
       color: grey.A400,
-      fontSize: '1.2rem',
+      fontSize: "1.2rem",
     },
     li: {
       color: grey.A450,
     },
   },
 };
+
+export default muiBreadcrumbs;

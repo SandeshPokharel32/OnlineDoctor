@@ -1,10 +1,4 @@
-import {
-  Box,
-  withStyles,
-  Toolbar,
-  Typography,
-  Container,
-} from "@material-ui/core";
+import { Box, withStyles, Typography, Container } from "@material-ui/core";
 import React from "react";
 
 const Styles = () => {

@@ -32,7 +32,8 @@ const PatientSignup = ({ classes }) => {
   const [form, setForm] = useState({
     data: {
       full_name: "",
-      email: "",
+      citizenshipNumber: "",
+      photo: null,
       status: "",
       password: "",
     },
@@ -46,7 +47,7 @@ const PatientSignup = ({ classes }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const errors = {};
-    Object.keys(form.data).map((name) => {
+    Object.keys(form.data).forEach((name) => {
       if (!form.data[name]) errors[name] = "Required";
     });
     if (Object.keys(errors).length) {
@@ -75,6 +76,16 @@ const PatientSignup = ({ classes }) => {
       },
     }));
   };
+  const handlefileChange = (e) => {
+    const { name, target } = e;
+    setForm((prevForm) => ({
+      ...prevForm,
+      data: {
+        ...prevForm.data,
+        [name]: target.files[0],
+      },
+    }));
+  };
 
   const handleClickShowPassword = () => {
     setForm((prevForm) => ({
@@ -93,7 +104,7 @@ const PatientSignup = ({ classes }) => {
   };
 
   return (
-    <PageLayout heading="Log in As Doctor" page="Doctor Login">
+    <PageLayout heading="Register As Citizen" page="Citizen Signup">
       <Box
         component="form"
         classes={{ root: classes.form }}
@@ -115,16 +126,90 @@ const PatientSignup = ({ classes }) => {
           <Grid xs={12} lg={12} item>
             <TextField
               classes={{ root: classes.inputRoot }}
-              id="email"
-              name="email"
-              type="email"
-              label="Email"
-              value={form.data.email}
+              id="citizenshipNumber"
+              name="citizenshipNumber"
+              type="text"
+              inputProps={{
+                pattern: "[0-9]{3}-[0-9]{3}-[0-9]{4}",
+                title: "Should be valid citizenship 000-000-0000",
+                minLength: "12",
+                maxLength: "12",
+                required: true,
+              }}
+              label="Citizenship Number"
+              value={form.data.citizenshipNumber}
               onChange={handleChange}
               required
             />
           </Grid>
-
+          <Grid xs={12} lg={12} item>
+            <TextField
+              classes={{ root: classes.inputRoot }}
+              id="file"
+              name="file"
+              type="file"
+              inputProps={{
+                accept: "image/*",
+              }}
+              label="Citizenship photo"
+              value={form.data?.file}
+              onChange={handlefileChange}
+              required
+            />
+            <Box>
+              {form.data?.file ? (
+                <img src={form.data.file} alt="citizenship" />
+              ) : null}
+            </Box>
+          </Grid>
+          <Grid xs={12} lg={12} item>
+            <TextField
+              classes={{ root: classes.inputRoot }}
+              id="full_name"
+              name="full_name"
+              type="text"
+              label="Primary address"
+              value={form.data.full_name}
+              onChange={handleChange}
+              required
+            />
+          </Grid>
+          <Grid xs={12} lg={4} item>
+            <TextField
+              classes={{ root: classes.inputRoot }}
+              id="full_name"
+              name="full_name"
+              type="text"
+              label="city"
+              value={form.data.full_name}
+              onChange={handleChange}
+              required
+            />
+          </Grid>
+          <Grid xs={12} lg={4} item>
+            <TextField
+              classes={{ root: classes.inputRoot }}
+              id="full_name"
+              name="full_name"
+              type="text"
+              label="state"
+              value={form.data.full_name}
+              onChange={handleChange}
+              required
+            />
+          </Grid>
+          <Grid xs={12} lg={4} item>
+            <TextField
+              classes={{ root: classes.inputRoot }}
+              id="full_name"
+              name="full_name"
+              type="text"
+              label="ward Number"
+              value={form.data.full_name}
+              onChange={handleChange}
+              required
+            />
+          </Grid>
           <Grid xs={12} lg={12} item>
             <InputLabel htmlFor="standard-adornment-password">
               Password
@@ -194,6 +279,7 @@ const PatientSignup = ({ classes }) => {
               )}
               <Button
                 variant="contained"
+                size="large"
                 onClick={handlePatientSignup}
                 color="default"
               >

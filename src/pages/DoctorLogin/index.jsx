@@ -30,7 +30,7 @@ const Styles = () => {
 const DoctorLogin = ({ classes }) => {
   const [form, setForm] = useState({
     data: {
-      doctor_id: "",
+      camp_id: "",
       password: "",
     },
     showPassword: false,
@@ -43,7 +43,7 @@ const DoctorLogin = ({ classes }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const errors = {};
-    Object.keys(form.data).map((name) => {
+    Object.keys(form.data).forEach((name) => {
       if (!form.data[name]) errors[name] = "Required";
     });
     if (Object.keys(errors).length) {
@@ -90,7 +90,7 @@ const DoctorLogin = ({ classes }) => {
   };
 
   return (
-    <PageLayout heading="Log in As Doctor" page="Doctor Login">
+    <PageLayout heading="Log in As Vaccine camp" page="Vaccine camp Login">
       <Box
         component="form"
         classes={{ root: classes.form }}
@@ -100,11 +100,16 @@ const DoctorLogin = ({ classes }) => {
           <Grid xs={12} lg={12} item>
             <TextField
               classes={{ root: classes.inputRoot }}
-              id="doctor_id"
-              name="doctor_id"
-              type="text"
-              label="Doctor Id"
-              value={form.data.email}
+              id="camp_id"
+              name="camp_id"
+              type="number"
+              label="Camp Id"
+              inputProps={{
+                min: "1000",
+                max: "10000",
+                required: true,
+              }}
+              value={form.data.camp_id}
               onChange={handleChange}
               required
             />
@@ -149,11 +154,12 @@ const DoctorLogin = ({ classes }) => {
                 </Button>
               )}
               <Button
+                size="large"
                 variant="contained"
                 onClick={handlePatientLogin}
                 color="default"
               >
-                Login as Patient Instead
+                Login as Citizen
               </Button>
             </Box>
           </Grid>
